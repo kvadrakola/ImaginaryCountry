@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía Bootstrap - República de Amargia</title>
     <link href="css/custom-bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --card-bg: #ffffff;
@@ -132,7 +133,7 @@
             color: #1e1b4b;
         }
 
-        /* === CÓDIGO: usando <pre> para evitar parsing como HTML === */
+        /* === CÓDIGO === */
         pre.code-block {
             background: var(--code-bg);
             border-radius: 12px;
@@ -149,12 +150,6 @@
             tab-size: 4;
             border: none;
         }
-        .code-block .tag-name { color: #cba6f7; }
-        .code-block .attr-name { color: #89b4fa; }
-        .code-block .attr-value { color: #a6e3a1; }
-        .code-block .comment { color: #6c7086; font-style: italic; }
-        .code-block .string { color: #a6e3a1; }
-        .code-block .keyword { color: #cba6f7; }
 
         .code-label {
             position: absolute;
@@ -413,10 +408,10 @@
                 <tr><td>scss/styles.scss</td><td>El archivo Sass donde <strong>definimos colores</strong> de la marca y personalizamos variables antes de compilar.</td></tr>
             </table>
 
-            <pre class="code-block"><span class="code-label">HTML → index.html</span><span class="comment"><!-- L&iacute;nea 7: CSS personalizado --></span>
-<span class="tag-name"><link</span> <span class="attr-name">href</span>=<span class="attr-value">"css/custom-bootstrap.css"</span> <span class="attr-name">rel</span>=<span class="attr-value">"stylesheet"</span><span class="tag-name">></span>
-<span class="comment"><!-- L&iacute;nea 108: JavaScript de Bootstrap --></span>
-<span class="tag-name"><script</span> <span class="attr-name">src</span>=<span class="attr-value">"js/bootstrap.fixed.js"</span><span class="tag-name">></script></span></pre>
+            <pre class="code-block"><span class="code-label">HTML &rarr; index.html</span>&lt;!-- L&iacute;nea 7: CSS personalizado --&gt;
+&lt;link href="css/custom-bootstrap.css" rel="stylesheet"&gt;
+&lt;!-- L&iacute;nea 108: JavaScript de Bootstrap --&gt;
+&lt;script src="js/bootstrap.fixed.js"&gt;&lt;/script&gt;</pre>
 
             <div class="info-box">
                 <strong>💡 Dato importante:</strong> Bootstrap necesita <strong>ambos</strong>: el CSS (estilos) y el JS (comportamiento interactivo). Sin el JS, el men&uacute; hamburguesa, el offcanvas y el collapse <strong>no funcionar&iacute;an</strong>.
@@ -441,18 +436,18 @@
             </div>
 
             <pre class="code-block"><span class="code-label">index.html (hero)</span>
-<span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"container col-xxl-8 px-4 py-5 mt"</span><span class="tag-name">></span>
-  <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"row flex-lg-row-reverse align-items-center g-5 py-5"</span><span class="tag-name">></span>
-    <span class="comment"><!-- Columna de la imagen --></span>
-    <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"col-10 col-sm-8 col-lg-6"</span><span class="tag-name">></span>
-      <span class="tag-name"><img</span> <span class="attr-name">src</span>=<span class="attr-value">"..."</span> <span class="attr-name">class</span>=<span class="attr-value">"d-block mx-lg-auto img-fluid"</span><span class="tag-name">></span>
-    <span class="tag-name"></div></span>
-    <span class="comment"><!-- Columna del texto --></span>
-    <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"col-lg-6"</span><span class="tag-name">></span>
-      <span class="tag-name"><h1</span> <span class="attr-name">class</span>=<span class="attr-value">"display-5 fw-bold lh-1 mb-3"</span><span class="tag-name">></span>...<span class="tag-name"></h1></span>
-    <span class="tag-name"></div></span>
-  <span class="tag-name"></div></span>
-<span class="tag-name"></div></span></pre>
+&lt;div class="container col-xxl-8 px-4 py-5 mt"&gt;
+  &lt;div class="row flex-lg-row-reverse align-items-center g-5 py-5"&gt;
+    &lt;!-- Columna de la imagen --&gt;
+    &lt;div class="col-10 col-sm-8 col-lg-6"&gt;
+      &lt;img src="..." class="d-block mx-lg-auto img-fluid"&gt;
+    &lt;/div&gt;
+    &lt;!-- Columna del texto --&gt;
+    &lt;div class="col-lg-6"&gt;
+      &lt;h1 class="display-5 fw-bold lh-1 mb-3"&gt;...&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
 
             <div class="annotations">
                 <h4>🔎 Clase por clase</h4>
@@ -499,18 +494,18 @@
             </div>
 
             <pre class="code-block"><span class="code-label">index.html l&iacute;neas 13&ndash;46</span>
-<span class="tag-name"><nav</span> <span class="attr-name">class</span>=<span class="attr-value">"navbar navbar-expand-lg fixed-top bg-secondary"</span><span class="tag-name">></span>
-  <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"container-fluid"</span><span class="tag-name">></span>
-    <span class="tag-name"><a</span> <span class="attr-name">class</span>=<span class="attr-value">"navbar-brand text-primary"</span> <span class="attr-name">href</span>=<span class="attr-value">"#"</span><span class="tag-name">></span>
-      <span class="tag-name"><img</span> <span class="attr-name">src</span>=<span class="attr-value">"..."</span> <span class="attr-name">class</span>=<span class="attr-value">"d-inline-block align-text-top"</span><span class="tag-name">></span>
-      <span class="tag-name"><span</span> <span class="attr-name">class</span>=<span class="attr-value">"fs-2 fw-bold lh-1"</span><span class="tag-name">></span>Rep&uacute;blica de Amargia<span class="tag-name"></span></span>
-    <span class="tag-name"></a></span>
-    <span class="tag-name"><button</span> <span class="attr-name">class</span>=<span class="attr-value">"navbar-toggler"</span> <span class="attr-name">data-bs-toggle</span>=<span class="attr-value">"offcanvas"</span><span class="tag-name">></span>
-      <span class="tag-name"><span</span> <span class="attr-name">class</span>=<span class="attr-value">"navbar-toggler-icon"</span><span class="tag-name">></span></span>
-    <span class="tag-name"></button></span>
-    <span class="comment"><!-- Offcanvas ... (Secci&oacute;n 4) --></span>
-  <span class="tag-name"></div></span>
-<span class="tag-name"></nav></span></pre>
+&lt;nav class="navbar navbar-expand-lg fixed-top bg-secondary"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand text-primary" href="#"&gt;
+      &lt;img src="..." class="d-inline-block align-text-top"&gt;
+      &lt;span class="fs-2 fw-bold lh-1"&gt;Rep&uacute;blica de Amargia</span>
+    &lt;/a&gt;
+    &lt;button class="navbar-toggler" data-bs-toggle="offcanvas"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;</span>
+    &lt;/button&gt;
+    &lt;!-- Offcanvas ... (Secci&oacute;n 4) --&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</pre>
 
             <div class="annotations">
                 <h4>🔎 Clase por clase</h4>
@@ -537,7 +532,7 @@
         <div class="section-header">
             <div class="icon-circle" style="background:var(--accent-orange);">4</div>
             <h2>Men&uacute; Offcanvas (panel lateral)</h2>
-            <span class="section-number">MÓVIL</span>
+            <span class="section-number">M&Oacute;VIL</span>
         </div>
         <div class="section-body">
             <div class="explanation">
@@ -545,17 +540,17 @@
             </div>
 
             <pre class="code-block"><span class="code-label">index.html l&iacute;neas 22&ndash;44</span>
-<span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"offcanvas offcanvas-end"</span> <span class="attr-name">tabindex</span>=<span class="attr-value">"-1"</span> <span class="attr-name">id</span>=<span class="attr-value">"navbarOffcanvasLg"</span><span class="tag-name">></span>
-  <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"offcanvas-header"</span><span class="tag-name">></span>
-    <span class="tag-name"><h5</span> <span class="attr-name">class</span>=<span class="attr-value">"offcanvas-title"</span><span class="tag-name">></span>...<span class="tag-name"></h5></span>
-    <span class="tag-name"><button</span> <span class="attr-name">class</span>=<span class="attr-value">"btn-close btn-close-white"</span> <span class="attr-name">data-bs-dismiss</span>=<span class="attr-value">"offcanvas"</span><span class="tag-name">></button></span>
-  <span class="tag-name"></div></span>
-  <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"offcanvas-body"</span><span class="tag-name">></span>
-    <span class="tag-name"><ul</span> <span class="attr-name">class</span>=<span class="attr-value">"navbar-nav"</span><span class="tag-name">></span>
-      <span class="tag-name"><li</span> <span class="attr-name">class</span>=<span class="attr-value">"nav-item"</span><span class="tag-name">></span>...<span class="tag-name"></li></span>
-    <span class="tag-name"></ul></span>
-  <span class="tag-name"></div></span>
-<span class="tag-name"></div></span></pre>
+&lt;div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg"&gt;
+  &lt;div class="offcanvas-header"&gt;
+    &lt;h5 class="offcanvas-title"&gt;...&lt;/h5&gt;
+    &lt;button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="offcanvas-body"&gt;
+    &lt;ul class="navbar-nav"&gt;
+      &lt;li class="nav-item"&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
 
             <div class="annotations">
                 <h4>🔎 Clase por clase</h4>
@@ -652,17 +647,17 @@
             </div>
 
             <pre class="code-block"><span class="code-label">index.html l&iacute;neas 57, 80, 101</span>
-<span class="comment"><!-- Bot&oacute;n principal --></span>
-<span class="tag-name"><button</span> <span class="attr-name">type</span>=<span class="attr-value">"button"</span> <span class="attr-name">class</span>=<span class="attr-value">"btn btn-primary btn-lg px-4 me-md-2"</span><span class="tag-name">></span>Principal<span class="tag-name"></button></span>
+&lt;!-- Bot&oacute;n principal --&gt;
+&lt;button type="button" class="btn btn-primary btn-lg px-4 me-md-2"&gt;Principal&lt;/button&gt;
 
-<span class="comment"><!-- Bot&oacute;n outline --></span>
-<span class="tag-name"><button</span> <span class="attr-name">type</span>=<span class="attr-value">"button"</span> <span class="attr-name">class</span>=<span class="attr-value">"btn btn-outline-secondary btn-lg px-4"</span><span class="tag-name">></span>Por defecto<span class="tag-name"></button></span>
+&lt;!-- Bot&oacute;n outline --&gt;
+&lt;button type="button" class="btn btn-outline-secondary btn-lg px-4"&gt;Por defecto&lt;/button&gt;
 
-<span class="comment"><!-- Bot&oacute;n Submit con bg-success --></span>
-<span class="tag-name"><button</span> <span class="attr-name">type</span>=<span class="attr-value">"submit"</span> <span class="attr-name">class</span>=<span class="attr-value">"btn btn-primary bg-success shadow"</span><span class="tag-name">></span>Submit<span class="tag-name"></button></span>
+&lt;!-- Bot&oacute;n Submit con bg-success --&gt;
+&lt;button type="submit" class="btn btn-primary bg-success shadow"&gt;Submit&lt;/button&gt;
 
-<span class="comment"><!-- Bot&oacute;n Leer m&aacute;s... (collapse) --></span>
-<span class="tag-name"><button</span> <span class="attr-name">type</span>=<span class="attr-value">"button"</span> <span class="attr-name">class</span>=<span class="attr-value">"btn btn-primary bg-success shadow"</span> <span class="attr-name">data-bs-toggle</span>=<span class="attr-value">"collapse"</span><span class="tag-name">></span>Leer m&aacute;s...<span class="tag-name"></button></span></pre>
+&lt;!-- Bot&oacute;n Leer m&aacute;s... (collapse) --&gt;
+&lt;button type="button" class="btn btn-primary bg-success shadow" data-bs-toggle="collapse"&gt;Leer m&aacute;s...&lt;/button&gt;</pre>
 
             <div class="annotations">
                 <h4>🔎 Clase por clase</h4>
@@ -692,17 +687,17 @@
             </div>
 
             <pre class="code-block"><span class="code-label">index.html l&iacute;neas 66&ndash;82</span>
-<span class="tag-name"><form</span> <span class="attr-name">class</span>=<span class="attr-value">"container-sm pt-5 pb-5"</span><span class="tag-name">></span>
-  <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"mb-3"</span><span class="tag-name">></span>
-    <span class="tag-name"><label</span> <span class="attr-name">class</span>=<span class="attr-value">"form-label"</span><span class="tag-name">></span>Email address<span class="tag-name"></label></span>
-    <span class="tag-name"><input</span> <span class="attr-name">type</span>=<span class="attr-value">"email"</span> <span class="attr-name">class</span>=<span class="attr-value">"form-control"</span><span class="tag-name">></span>
-    <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"form-text"</span><span class="tag-name">></span>We'll never share...<span class="tag-name"></div></span>
-  <span class="tag-name"></div></span>
-  <span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"mb-3 form-check"</span><span class="tag-name">></span>
-    <span class="tag-name"><input</span> <span class="attr-name">class</span>=<span class="attr-value">"form-check-input"</span> <span class="attr-name">type</span>=<span class="attr-value">"checkbox"</span><span class="tag-name">></span>
-    <span class="tag-name"><label</span> <span class="attr-name">class</span>=<span class="attr-value">"form-check-label"</span><span class="tag-name">></span>Check me out<span class="tag-name"></label></span>
-  <span class="tag-name"></div></span>
-<span class="tag-name"></form></span></pre>
+&lt;form class="container-sm pt-5 pb-5"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="form-label"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" class="form-control"&gt;
+    &lt;div class="form-text"&gt;We'll never share...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3 form-check"&gt;
+    &lt;input class="form-check-input" type="checkbox"&gt;
+    &lt;label class="form-check-label"&gt;Check me out&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre>
 
             <div class="annotations">
                 <h4>🔎 Clase por clase</h4>
@@ -729,18 +724,18 @@
             </div>
 
             <pre class="code-block"><span class="code-label">index.html l&iacute;neas 91&ndash;103</span>
-<span class="comment"><!-- Contenido oculto inicialmente --></span>
-<span class="tag-name"><div</span> <span class="attr-name">class</span>=<span class="attr-value">"collapse"</span> <span class="attr-name">id</span>=<span class="attr-value">"articleMore"</span><span class="tag-name">></span>
-  <span class="tag-name"><p</span><span class="tag-name">></span>Este art&iacute;culo contin&uacute;a...<span class="tag-name"></p></span>
-  <span class="comment"><!-- m&aacute;s p&aacute;rrafos... --></span>
-<span class="tag-name"></div></span>
+&lt;!-- Contenido oculto inicialmente --&gt;
+&lt;div class="collapse" id="articleMore"&gt;
+  &lt;p&gt;Este art&iacute;culo contin&uacute;a...&lt;/p&gt;
+  &lt;!-- m&aacute;s p&aacute;rrafos... --&gt;
+&lt;/div&gt;
 
-<span class="comment"><!-- Bot&oacute;n que activa el collapse --></span>
-<span class="tag-name"><button</span> <span class="attr-name">class</span>=<span class="attr-value">"btn btn-primary bg-success shadow"</span>
-        <span class="attr-name">data-bs-toggle</span>=<span class="attr-value">"collapse"</span>
-        <span class="attr-name">data-bs-target</span>=<span class="attr-value">"#articleMore"</span><span class="tag-name">></span>
+&lt;!-- Bot&oacute;n que activa el collapse --&gt;
+&lt;button class="btn btn-primary bg-success shadow"
+        data-bs-toggle="collapse"
+        data-bs-target="#articleMore"&gt;
   Leer m&aacute;s...
-<span class="tag-name"></button></span></pre>
+&lt;/button&gt;</pre>
 
             <div class="annotations">
                 <h4>🔎 Clase por clase</h4>
@@ -772,32 +767,32 @@
             </div>
 
             <pre class="code-block"><span class="code-label">scss/styles.scss (resumen)</span>
-<span class="comment">// 1. Colores de marca</span>
-<span class="keyword">$amargia-yellow</span>:      <span class="string">#FAAC00</span>;
-<span class="keyword">$amargia-green</span>:       <span class="string">#00C83C</span>;
-<span class="keyword">$amargia-light-green</span>: <span class="string">#70FF9B</span>;
-<span class="keyword">$amargia-blue</span>:        <span class="string">#003D43</span>;
-<span class="keyword">$amargia-white</span>:       <span class="string">#F2F2F2</span>;
+// 1. Colores de marca
+$amargia-yellow:      #FAAC00;
+$amargia-green:       #00C83C;
+$amargia-light-green: #70FF9B;
+$amargia-blue:        #003D43;
+$amargia-white:       #F2F2F2;
 
-<span class="comment">// 2. Mapeamos a variables de Bootstrap</span>
-<span class="keyword">$primary</span>:   <span class="keyword">$amargia-light-green</span>;
-<span class="keyword">$secondary</span>: <span class="keyword">$amargia-blue</span>;
-<span class="keyword">$success</span>:   <span class="keyword">$amargia-green</span>;
-<span class="keyword">$warning</span>:   <span class="keyword">$amargia-yellow</span>;
+// 2. Mapeamos a variables de Bootstrap
+$primary:   $amargia-light-green;
+$secondary: $amargia-blue;
+$success:   $amargia-green;
+$warning:   $amargia-yellow;
 
-<span class="comment">// 3. Botones personalizados</span>
-<span class="keyword">$btn-border-radius</span>: <span class="string">30px</span>;
-<span class="keyword">$btn-padding-y</span>:    <span class="string">1.25rem</span>;
-<span class="keyword">$btn-padding-x</span>:    <span class="string">2.1875rem</span>;
+// 3. Botones personalizados
+$btn-border-radius: 30px;
+$btn-padding-y:    1.25rem;
+$btn-padding-x:    2.1875rem;
 
-<span class="comment">// 4. Inputs personalizados</span>
-<span class="keyword">$input-border-radius</span>: <span class="string">15px</span>;
-<span class="keyword">$input-border-color</span>:  <span class="keyword">$amargia-blue</span>;
+// 4. Inputs personalizados
+$input-border-radius: 15px;
+$input-border-color:  $amargia-blue;
 
-<span class="comment">// 5. Solo importamos lo necesario</span>
-<span class="keyword">@import</span> <span class="string">"bootstrap/scss/buttons"</span>;
-<span class="keyword">@import</span> <span class="string">"bootstrap/scss/navbar"</span>;
-<span class="comment">// ... etc</span></pre>
+// 5. Solo importamos lo necesario
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/navbar";
+// ... etc</pre>
 
             <div class="annotations">
                 <h4>🔎 Conceptos clave</h4>
