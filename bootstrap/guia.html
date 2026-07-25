@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Bootstrap - República de Amargia</title>
+    <link href="css/custom-bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --card-bg: #ffffff;
+            --code-bg: #1e1e2e;
+            --code-text: #cdd6f4;
+            --border-color: #e0d4f0;
+            --accent-purple: #7c3aed;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f59e0b;
+            --accent-pink: #ec4899;
+        }
+
+        body {
+            background: #f0edf5;
+            font-family: 'Albert Sans', sans-serif;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+            color: white;
+            padding: 4rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        .guide-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+        .guide-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0.5rem auto 0;
+            position: relative;
+            z-index: 1;
+        }
+        .guide-header .badge-proyecto {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.2s;
+        }
+        .section-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-header .icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            color: white;
+        }
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e1b4b;
+        }
+        .section-header .section-number {
+            background: #e8e4f0;
+            color: #6b5b95;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            margin-left: auto;
+        }
+
+        .section-body {
+            padding: 1.8rem 2rem 2rem;
+        }
+
+        .explanation {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+        .explanation strong {
+            color: #1e1b4b;
+        }
+
+        /* === CÓDIGO === */
+        pre.code-block {
+            background: var(--code-bg);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0 1.5rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--code-text);
+            position: relative;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            tab-size: 4;
+            border: none;
+        }
+
+        .code-label {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.8rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(255,255,255,0.08);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            color: #a6adc8;
+            font-family: 'Albert Sans', sans-serif;
+        }
+
+        .annotations {
+            background: #f8f6ff;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-purple);
+        }
+        .annotations h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-purple);
+            font-weight: 700;
+            margin: 0 0 0.8rem 0;
+        }
+        .annotation-item {
+            display: flex;
+            gap: 0.8rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #ede9fe;
+            font-size: 0.95rem;
+        }
+        .annotation-item:last-child {
+            border-bottom: none;
+        }
+        .annotation-item .class-name {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            font-weight: 600;
+            min-width: fit-content;
+        }
+        .annotation-item .class-desc {
+            color: #374151;
+        }
+        .annotation-item .class-desc code {
+            background: #e5e7eb;
+            padding: 0.05rem 0.35rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            color: #1f2937;
+        }
+
+        .tip-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 0 12px 12px 0;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+        .tip-box strong {
+            color: #92400e;
+        }
+        .tip-box code {
+            background: #fef3c7;
+            padding: 0.05rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 12px 12px 0;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+        .info-box strong {
+            color: #1e40af;
+        }
+        .info-box code {
+            background: #dbeafe;
+            padding: 0.05rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            border-radius: 0 12px 12px 0;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+        .warning-box strong {
+            color: #991b1b;
+        }
+        .warning-box code {
+            background: #fecaca;
+            padding: 0.05rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #f3f0ff;
+            color: #4c1d95;
+            font-weight: 700;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .comparison-table td {
+            padding: 0.7rem 1rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+        .comparison-table tr:last-child td:first-child {
+            border-bottom-left-radius: 12px;
+        }
+        .comparison-table tr:last-child td:last-child {
+            border-bottom-right-radius: 12px;
+        }
+        .comparison-table td:first-child {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-weight: 600;
+            color: #4c1d95;
+            background: #fafaff;
+            white-space: nowrap;
+        }
+        .comparison-table tr:hover td {
+            background: #f8f6ff;
+        }
+
+        .grid-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 1.2rem 0;
+            padding: 1rem;
+            background: #f0edf5;
+            border-radius: 12px;
+        }
+        .grid-demo .col-box {
+            background: var(--accent-purple);
+            color: white;
+            text-align: center;
+            padding: 0.8rem 0.3rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .grid-demo .col-box.green { background: var(--accent-green); }
+        .grid-demo .col-box.blue { background: var(--accent-blue); }
+        .grid-demo .col-box.orange { background: var(--accent-orange); }
+        .grid-demo .col-box.pink { background: var(--accent-pink); }
+
+        .miniature-preview {
+            display: inline-block;
+            background: #f0edf5;
+            border-radius: 8px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #6b5b95;
+        }
+
+        .guide-footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6b5b95;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .guide-header h1 { font-size: 2rem; }
+            .section-header { flex-wrap: wrap; }
+            .section-header .section-number { margin-left: 0; }
+            .annotation-item { flex-direction: column; gap: 0.2rem; }
+            .comparison-table td:first-child { white-space: normal; }
+            pre.code-block { font-size: 0.75rem; padding: 1rem; }
+        }
+
+        .go-to-project {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: #1e1b4b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.7rem 1.3rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.15s;
+        }
+        .go-to-project:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header class="guide-header">
+    <h1>📚 Guía Bootstrap</h1>
+    <p>Aprende c&oacute;mo funciona Bootstrap en nuestro proyecto<br>&laquo;Rep&uacute;blica de Amargia&raquo; &mdash; explicado paso a paso</p>
+    <div class="badge-proyecto">🎓 Proyecto ImaginaryCountry &middot; Factor&iacute;a F5</div>
+</header>
+
+<div class="guide-container">
+
+    <!-- SECCIÓN 1 -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-purple);">1</div>
+            <h2>¿Qu&eacute; es Bootstrap y c&oacute;mo lo usamos?</h2>
+            <span class="section-number">INTRO</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p><strong>Bootstrap</strong> es un framework de CSS y JavaScript que nos da <strong>componentes listos para usar</strong>: men&uacute;s, botones, formularios, cuadr&iacute;culas, etc. Solo a&ntilde;adiendo clases en el HTML, sin escribir casi CSS nosotros mismos.</p>
+                <p>En este proyecto usamos una versi&oacute;n <strong>personalizada</strong> (no el CDN est&aacute;ndar).</p>
+            </div>
+
+            <h4 style="color:#4c1d95;margin-top:1.5rem;">📁 Archivos incluidos</h4>
+            <table class="comparison-table">
+                <tr><th>Archivo</th><th>¿Qu&eacute; hace?</th></tr>
+                <tr><td>css/custom-bootstrap.css</td><td>Es el CSS de Bootstrap compilado con nuestros <strong>colores y estilos personalizados</strong> (ver Secci&oacute;n 9).</td></tr>
+                <tr><td>js/bootstrap.fixed.js</td><td>Es el JavaScript de Bootstrap (men&uacute; offcanvas, collapse, etc.). Lo llamamos &laquo;fixed&raquo; porque tiene una correcci&oacute;n para un error con el offcanvas.</td></tr>
+                <tr><td>scss/styles.scss</td><td>El archivo Sass donde <strong>definimos colores</strong> de la marca y personalizamos variables antes de compilar.</td></tr>
+            </table>
+
+            <pre class="code-block"><span class="code-label">HTML &rarr; index.html</span>&lt;!-- L&iacute;nea 7: CSS personalizado --&gt;
+&lt;link href="css/custom-bootstrap.css" rel="stylesheet"&gt;
+&lt;!-- L&iacute;nea 108: JavaScript de Bootstrap --&gt;
+&lt;script src="js/bootstrap.fixed.js"&gt;&lt;/script&gt;</pre>
+
+            <div class="info-box">
+                <strong>💡 Dato importante:</strong> Bootstrap necesita <strong>ambos</strong>: el CSS (estilos) y el JS (comportamiento interactivo). Sin el JS, el men&uacute; hamburguesa, el offcanvas y el collapse <strong>no funcionar&iacute;an</strong>.
+            </div>
+            <div class="tip-box">
+                <strong>🔍 Para tus compa&ntilde;eros:</strong> Si quieres usar Bootstrap en otro proyecto, puedes <strong>descargarlo</strong> o usar un <strong>CDN</strong>. En nuestro proyecto lo compilamos a medida para tener solo lo necesario.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2: GRID -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-green);">2</div>
+            <h2>Sistema de Cuadr&iacute;cula (Grid)</h2>
+            <span class="section-number">LAYOUT</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>El <strong>grid de Bootstrap</strong> divide la p&aacute;gina en <strong>12 columnas</strong>. Usando combinaciones de <code>container</code> &rarr; <code>row</code> &rarr; <code>col-*</code> maquetamos el contenido.</p>
+                <p>Veamos c&oacute;mo se usa en nuestro <code>index.html</code> (l&iacute;neas 48&ndash;62):</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">index.html (hero)</span>
+&lt;div class="container col-xxl-8 px-4 py-5 mt"&gt;
+  &lt;div class="row flex-lg-row-reverse align-items-center g-5 py-5"&gt;
+    &lt;!-- Columna de la imagen --&gt;
+    &lt;div class="col-10 col-sm-8 col-lg-6"&gt;
+      &lt;img src="..." class="d-block mx-lg-auto img-fluid"&gt;
+    &lt;/div&gt;
+    &lt;!-- Columna del texto --&gt;
+    &lt;div class="col-lg-6"&gt;
+      &lt;h1 class="display-5 fw-bold lh-1 mb-3"&gt;...&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            <div class="annotations">
+                <h4>🔎 Clase por clase</h4>
+                <div class="annotation-item"><span class="class-name">container</span><span class="class-desc">Crea un contenedor <strong>centrado</strong> con m&aacute;ximo de ancho (responsive).</span></div>
+                <div class="annotation-item"><span class="class-name">col-xxl-8</span><span class="class-desc">En pantallas <strong>extra extra grandes</strong> (&ge;1400px), el contenedor ocupa 8 de 12 columnas.</span></div>
+                <div class="annotation-item"><span class="class-name">px-4 / py-5</span><span class="class-desc">Espaciado interno (padding): <code>px</code> = horizontal, <code>py</code> = vertical. Los n&uacute;meros van de 0 a 5.</span></div>
+                <div class="annotation-item"><span class="class-name">row</span><span class="class-desc">Crea una <strong>fila</strong> que contiene columnas. Contrarresta el padding del contenedor.</span></div>
+                <div class="annotation-item"><span class="class-name">flex-lg-row-reverse</span><span class="class-desc">En pantallas grandes (lg+), invierte el orden: la imagen pasa a la derecha y el texto a la izquierda.</span></div>
+                <div class="annotation-item"><span class="class-name">align-items-center</span><span class="class-desc">Centra <strong>verticalmente</strong> todas las columnas dentro de la fila.</span></div>
+                <div class="annotation-item"><span class="class-name">g-5</span><span class="class-desc"><strong>Gutter</strong> = espaciado entre columnas. <code>g-5</code> da el m&aacute;ximo espacio.</span></div>
+                <div class="annotation-item"><span class="class-name">col-10 col-sm-8 col-lg-6</span><span class="class-desc"><strong>Columnas responsive</strong>: ocupa 10 cols en m&oacute;vil, 8 en tablet, 6 en escritorio.</span></div>
+                <div class="annotation-item"><span class="class-name">mx-lg-auto</span><span class="class-desc">Margen horizontal autom&aacute;tico &rarr; centra la imagen en pantallas grandes.</span></div>
+                <div class="annotation-item"><span class="class-name">img-fluid</span><span class="class-desc">Hace que la imagen <strong>nunca se desborde</strong> y se escale con el contenedor. ¡Imprescindible!</span></div>
+            </div>
+
+            <h4 style="color:#374151;margin-top:1.5rem;">📊 Visualizaci&oacute;n: c&oacute;mo se reparten las 12 columnas</h4>
+            <div class="grid-demo">
+                <div class="col-box" style="width:calc(50% - 4px);">col-6 &middot; Imagen</div>
+                <div class="col-box green" style="width:calc(50% - 4px);">col-6 &middot; Texto</div>
+            </div>
+            <p style="font-size:0.9rem;color:#6b5b95;text-align:center;margin-top:0.3rem;">Escritorio: 6 + 6 = 12 ✓</p>
+            <div class="grid-demo">
+                <div class="col-box blue" style="width:calc(66.66% - 4px);">col-8 &middot; Imagen</div>
+                <div class="col-box orange" style="width:calc(33.33% - 4px);">col-4 &middot; Texto</div>
+            </div>
+            <p style="font-size:0.9rem;color:#6b5b95;text-align:center;margin-top:0.3rem;">Tablet: 8 + 4 = 12 ✓</p>
+
+            <div class="tip-box">
+                <strong>🎯 Regla de oro:</strong> La suma de las columnas dentro de una fila debe dar <strong>12</strong>. <code>col-6</code> + <code>col-6</code> = 12. <code>col-4</code> + <code>col-4</code> + <code>col-4</code> = 12.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 3: NAVBAR -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-blue);">3</div>
+            <h2>Barra de Navegaci&oacute;n (Navbar)</h2>
+            <span class="section-number">NAV</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>La <strong>navbar</strong> es el men&uacute; superior. Se vuelve un men&uacute; hamburguesa en m&oacute;vil y se despliega con <strong>offcanvas</strong> en lugar del cl&aacute;sico men&uacute; desplegable.</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">index.html l&iacute;neas 13&ndash;46</span>
+&lt;nav class="navbar navbar-expand-lg fixed-top bg-secondary"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand text-primary" href="#"&gt;
+      &lt;img src="..." class="d-inline-block align-text-top"&gt;
+      &lt;span class="fs-2 fw-bold lh-1"&gt;Rep&uacute;blica de Amargia</span>
+    &lt;/a&gt;
+    &lt;button class="navbar-toggler" data-bs-toggle="offcanvas"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;</span>
+    &lt;/button&gt;
+    &lt;!-- Offcanvas ... (Secci&oacute;n 4) --&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</pre>
+
+            <div class="annotations">
+                <h4>🔎 Clase por clase</h4>
+                <div class="annotation-item"><span class="class-name">navbar</span><span class="class-desc">Activa los estilos de barra de navegaci&oacute;n de Bootstrap.</span></div>
+                <div class="annotation-item"><span class="class-name">navbar-expand-lg</span><span class="class-desc">Se muestra <strong>horizontal</strong> en escritorio (lg+). En m&oacute;vil aparece el bot&oacute;n hamburguesa.</span></div>
+                <div class="annotation-item"><span class="class-name">fixed-top</span><span class="class-desc">Fija la barra <strong>arriba de todo</strong>. ¡Ojo! Necesita un <code>margin-top</code> en el contenido de abajo.</span></div>
+                <div class="annotation-item"><span class="class-name">bg-secondary</span><span class="class-desc">Color de fondo secundario (azul oscuro). Las clases <code>bg-*</code> son colores contextuales.</span></div>
+                <div class="annotation-item"><span class="class-name">container-fluid</span><span class="class-desc">Ocupa <strong>todo el ancho</strong> disponible (a diferencia de <code>container</code> que tiene m&aacute;ximo).</span></div>
+                <div class="annotation-item"><span class="class-name">navbar-brand</span><span class="class-desc">Estiliza el logo/nombre de la marca.</span></div>
+                <div class="annotation-item"><span class="class-name">text-primary</span><span class="class-desc">Color de texto primario (verde claro). Las clases <code>text-*</code> cambian el color del texto.</span></div>
+                <div class="annotation-item"><span class="class-name">fs-2 / fw-bold / lh-1</span><span class="class-desc"><code>fs-2</code> = tama&ntilde;o de fuente, <code>fw-bold</code> = negrita, <code>lh-1</code> = interlineado m&iacute;nimo.</span></div>
+                <div class="annotation-item"><span class="class-name">navbar-toggler</span><span class="class-desc">El bot&oacute;n ☰ (hamburguesa) que aparece en m&oacute;vil.</span></div>
+                <div class="annotation-item"><span class="class-name">navbar-toggler-icon</span><span class="class-desc">El icono ☰ en s&iacute; (tres rayitas).</span></div>
+            </div>
+
+            <div class="tip-box">
+                <strong>⚠️ Cuidado con <code>fixed-top</code>:</strong> La barra se superpone al contenido. Por eso en el <code>index.html</code> hay un <code>mt</code> en el primer contenedor. ¡Si no le pones margen, el contenido queda <strong>detr&aacute;s</strong>!
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 4: OFFCANVAS -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-orange);">4</div>
+            <h2>Men&uacute; Offcanvas (panel lateral)</h2>
+            <span class="section-number">M&Oacute;VIL</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>Al pulsar ☰ en m&oacute;vil, se abre un <strong>panel lateral</strong> desde la derecha. Eso es el Offcanvas de Bootstrap.</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">index.html l&iacute;neas 22&ndash;44</span>
+&lt;div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg"&gt;
+  &lt;div class="offcanvas-header"&gt;
+    &lt;h5 class="offcanvas-title"&gt;...&lt;/h5&gt;
+    &lt;button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="offcanvas-body"&gt;
+    &lt;ul class="navbar-nav"&gt;
+      &lt;li class="nav-item"&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            <div class="annotations">
+                <h4>🔎 Clase por clase</h4>
+                <div class="annotation-item"><span class="class-name">offcanvas</span><span class="class-desc">Activa el componente. Por defecto est&aacute; <strong>oculto</strong>.</span></div>
+                <div class="annotation-item"><span class="class-name">offcanvas-end</span><span class="class-desc">El panel se desliza desde la <strong>derecha</strong>. Existe <code>offcanvas-start</code>, <code>offcanvas-top</code>, etc.</span></div>
+                <div class="annotation-item"><span class="class-name">offcanvas-header</span><span class="class-desc">Cabecera del panel con t&iacute;tulo y bot&oacute;n <strong>cerrar</strong> (&times;).</span></div>
+                <div class="annotation-item"><span class="class-name">btn-close</span><span class="class-desc">Bot&oacute;n &times; para cerrar. <code>btn-close-white</code> lo vuelve blanco.</span></div>
+                <div class="annotation-item"><span class="class-name">data-bs-dismiss="offcanvas"</span><span class="class-desc">Atributo que le dice a Bootstrap: &laquo;al hacer clic, cierra el offcanvas&raquo;.</span></div>
+                <div class="annotation-item"><span class="class-name">offcanvas-body</span><span class="class-desc">Contenido del panel (los enlaces del men&uacute;).</span></div>
+                <div class="annotation-item"><span class="class-name">navbar-nav / nav-item / nav-link</span><span class="class-desc">Estilizan la lista de navegaci&oacute;n. <code>active</code> marca el enlace actual, <code>disabled</code> lo deshabilita.</span></div>
+            </div>
+
+            <div class="warning-box">
+                <strong>🐛 Error conocido:</strong> Bootstrap tiene un bug donde el offcanvas no se cierra al hacer clic en un enlace. Por eso usamos <code>bootstrap.fixed.js</code> &mdash; una versi&oacute;n <strong>parcheada</strong>.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 5: UTILIDADES -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-pink);">5</div>
+            <h2>Utilidades de Bootstrap</h2>
+            <span class="section-number">CLASES</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>Bootstrap tiene cientos de <strong>clases utilitarias</strong> que controlan una sola propiedad: colores, espaciado, tipograf&iacute;a, bordes, etc.</p>
+            </div>
+
+            <h4 style="color:#4c1d95;">🎨 Colores de fondo y texto</h4>
+            <table class="comparison-table">
+                <tr><th>Clase</th><th>¿Qu&eacute; hace?</th><th>En nuestro proyecto</th></tr>
+                <tr><td class="miniature-preview">bg-secondary</td><td>Fondo azul oscuro</td><td>Navbar</td></tr>
+                <tr><td class="miniature-preview">bg-warning</td><td>Fondo amarillo</td><td>Secci&oacute;n del formulario</td></tr>
+                <tr><td class="miniature-preview">bg-success</td><td>Fondo verde</td><td>Secci&oacute;n del himno y bot&oacute;n Submit</td></tr>
+                <tr><td class="miniature-preview">text-primary</td><td>Texto verde claro</td><td>T&iacute;tulo &laquo;Hola&raquo; y nombre en navbar</td></tr>
+                <tr><td class="miniature-preview">text-light</td><td>Texto blanco</td><td>Parte del t&iacute;tulo</td></tr>
+                <tr><td class="miniature-preview">text-secondary</td><td>Texto azul oscuro</td><td>P&aacute;rrafo explicativo</td></tr>
+                <tr><td class="miniature-preview">text-dark</td><td>Texto casi negro</td><td>Texto dentro del collapse</td></tr>
+            </table>
+
+            <h4 style="color:#4c1d95;margin-top:1.5rem;">📏 Espaciado (margin & padding)</h4>
+            <div class="explanation">
+                <p>F&oacute;rmula: <code>{propiedad}{lado}-{tama&ntilde;o}</code></p>
+            </div>
+            <table class="comparison-table">
+                <tr><th>Clase</th><th>Significado</th><th>Equivale a</th></tr>
+                <tr><td class="miniature-preview">p-5</td><td>Padding en 4 lados &middot; 5</td><td><code>padding: 3rem</code></td></tr>
+                <tr><td class="miniature-preview">pt-5</td><td>Padding-top &middot; 5</td><td><code>padding-top: 3rem</code></td></tr>
+                <tr><td class="miniature-preview">pb-5</td><td>Padding-bottom &middot; 5</td><td><code>padding-bottom: 3rem</code></td></tr>
+                <tr><td class="miniature-preview">px-4</td><td>Padding horizontal &middot; 4</td><td><code>padding: 0 1.5rem</code></td></tr>
+                <tr><td class="miniature-preview">py-5</td><td>Padding vertical &middot; 5</td><td><code>padding: 3rem 0</code></td></tr>
+                <tr><td class="miniature-preview">mt-5</td><td>Margin-top &middot; 5</td><td><code>margin-top: 3rem</code></td></tr>
+                <tr><td class="miniature-preview">mb-3</td><td>Margin-bottom &middot; 3</td><td><code>margin-bottom: 1rem</code></td></tr>
+            </table>
+            <div class="tip-box">
+                <strong>📐 Escala:</strong> 0 = 0, 1 = 0.25rem, 2 = 0.5rem, 3 = 1rem, 4 = 1.5rem, 5 = 3rem.
+            </div>
+
+            <h4 style="color:#4c1d95;margin-top:1.5rem;">🔤 Tipograf&iacute;a</h4>
+            <table class="comparison-table">
+                <tr><th>Clase</th><th>Efecto</th></tr>
+                <tr><td class="miniature-preview">display-5</td><td>Texto grande y llamativo (t&iacute;tulo hero)</td></tr>
+                <tr><td class="miniature-preview">fw-bold</td><td>Negrita</td></tr>
+                <tr><td class="miniature-preview">fs-2</td><td>Tama&ntilde;o de fuente nivel 2</td></tr>
+                <tr><td class="miniature-preview">lh-1</td><td>Interlineado compacto</td></tr>
+                <tr><td class="miniature-preview">lead</td><td>Texto destacado (1.125rem)</td></tr>
+            </table>
+
+            <h4 style="color:#4c1d95;margin-top:1.5rem;">🔄 Otras utilidades</h4>
+            <table class="comparison-table">
+                <tr><th>Clase</th><th>¿Qu&eacute; hace?</th><th>Ejemplo</th></tr>
+                <tr><td class="miniature-preview">d-block</td><td><code>display: block</code></td><td>Imagen del hero</td></tr>
+                <tr><td class="miniature-preview">d-grid</td><td><code>display: grid</code></td><td>Contenedor de botones</td></tr>
+                <tr><td class="miniature-preview">d-md-flex</td><td><code>display: flex</code> en md+</td><td>Botones en fila en escritorio</td></tr>
+                <tr><td class="miniature-preview">d-inline-block</td><td><code>display: inline-block</code></td><td>Logo en navbar</td></tr>
+                <tr><td class="miniature-preview">rounded-top-4</td><td>Esquinas superiores redondeadas</td><td>Secci&oacute;n formulario</td></tr>
+                <tr><td class="miniature-preview">shadow</td><td>Sombra suave</td><td>Secci&oacute;n formulario y bot&oacute;n</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: BOTONES -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:#ef4444;">6</div>
+            <h2>Botones</h2>
+            <span class="section-number">BTN</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>Los botones de Bootstrap se crean con <code>btn</code> + un color contextual. Veamos los del proyecto:</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">index.html l&iacute;neas 57, 80, 101</span>
+&lt;!-- Bot&oacute;n principal --&gt;
+&lt;button type="button" class="btn btn-primary btn-lg px-4 me-md-2"&gt;Principal&lt;/button&gt;
+
+&lt;!-- Bot&oacute;n outline --&gt;
+&lt;button type="button" class="btn btn-outline-secondary btn-lg px-4"&gt;Por defecto&lt;/button&gt;
+
+&lt;!-- Bot&oacute;n Submit con bg-success --&gt;
+&lt;button type="submit" class="btn btn-primary bg-success shadow"&gt;Submit&lt;/button&gt;
+
+&lt;!-- Bot&oacute;n Leer m&aacute;s... (collapse) --&gt;
+&lt;button type="button" class="btn btn-primary bg-success shadow" data-bs-toggle="collapse"&gt;Leer m&aacute;s...&lt;/button&gt;</pre>
+
+            <div class="annotations">
+                <h4>🔎 Clase por clase</h4>
+                <div class="annotation-item"><span class="class-name">btn</span><span class="class-desc">Clase base para todos los botones. Sin esto no hay estilo de bot&oacute;n.</span></div>
+                <div class="annotation-item"><span class="class-name">btn-primary</span><span class="class-desc">Color primario (verde claro). Fondo verde claro con texto oscuro.</span></div>
+                <div class="annotation-item"><span class="class-name">btn-outline-secondary</span><span class="class-desc">Solo borde, sin relleno. Al hover se rellena del color secundario.</span></div>
+                <div class="annotation-item"><span class="class-name">btn-lg</span><span class="class-desc">Versi&oacute;n grande. Tambi&eacute;n existe <code>btn-sm</code>.</span></div>
+                <div class="annotation-item"><span class="class-name">me-md-2</span><span class="class-desc">Margin-right en pantallas md+. Separa los botones entre s&iacute;.</span></div>
+            </div>
+
+            <div class="tip-box">
+                <strong>🎨 ¿Dos colores en un bot&oacute;n?</strong> <code>btn btn-primary bg-success</code>: <code>btn-primary</code> da el estilo base, pero <code>bg-success</code> <strong>sobrescribe</strong> el color de fondo a verde.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 7: FORMULARIOS -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-green);">7</div>
+            <h2>Formularios</h2>
+            <span class="section-number">FORM</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>Bootstrap estiliza los formularios con clases para inputs, labels, checks, etc.</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">index.html l&iacute;neas 66&ndash;82</span>
+&lt;form class="container-sm pt-5 pb-5"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="form-label"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" class="form-control"&gt;
+    &lt;div class="form-text"&gt;We'll never share...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3 form-check"&gt;
+    &lt;input class="form-check-input" type="checkbox"&gt;
+    &lt;label class="form-check-label"&gt;Check me out&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre>
+
+            <div class="annotations">
+                <h4>🔎 Clase por clase</h4>
+                <div class="annotation-item"><span class="class-name">container-sm</span><span class="class-desc">Ancho m&aacute;ximo peque&ntilde;o para que el form no se estire.</span></div>
+                <div class="annotation-item"><span class="class-name">mb-3</span><span class="class-desc">Separa cada grupo de formulario (margin-bottom 1rem).</span></div>
+                <div class="annotation-item"><span class="class-name">form-label</span><span class="class-desc">Estiliza la etiqueta del campo con padding y color.</span></div>
+                <div class="annotation-item"><span class="class-name">form-control</span><span class="class-desc">Clase principal para inputs, selects y textareas. Ancho completo.</span></div>
+                <div class="annotation-item"><span class="class-name">form-text</span><span class="class-desc">Texto de ayuda debajo del input (m&aacute;s peque&ntilde;o, gris).</span></div>
+                <div class="annotation-item"><span class="class-name">form-check / form-check-input / form-check-label</span><span class="class-desc">Para checkboxes y radios. Estiliza todo el grupo.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 8: COLLAPSE -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:#6366f1;">8</div>
+            <h2>Componente Collapse</h2>
+            <span class="section-number">COLLAPSE</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>El <strong>collapse</strong> permite mostrar/ocultar contenido con un bot&oacute;n. Lo usamos para &laquo;Leer m&aacute;s...&raquo; del himno.</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">index.html l&iacute;neas 91&ndash;103</span>
+&lt;!-- Contenido oculto inicialmente --&gt;
+&lt;div class="collapse" id="articleMore"&gt;
+  &lt;p&gt;Este art&iacute;culo contin&uacute;a...&lt;/p&gt;
+  &lt;!-- m&aacute;s p&aacute;rrafos... --&gt;
+&lt;/div&gt;
+
+&lt;!-- Bot&oacute;n que activa el collapse --&gt;
+&lt;button class="btn btn-primary bg-success shadow"
+        data-bs-toggle="collapse"
+        data-bs-target="#articleMore"&gt;
+  Leer m&aacute;s...
+&lt;/button&gt;</pre>
+
+            <div class="annotations">
+                <h4>🔎 Clase por clase</h4>
+                <div class="annotation-item"><span class="class-name">collapse</span><span class="class-desc">Oculta el contenido. Bootstrap a&ntilde;ade transici&oacute;n suave.</span></div>
+                <div class="annotation-item"><span class="class-name">data-bs-toggle="collapse"</span><span class="class-desc">Activa el comportamiento de collapse en el bot&oacute;n.</span></div>
+                <div class="annotation-item"><span class="class-name">data-bs-target="#articleMore"</span><span class="class-desc">Apunta al <strong>id</strong> del elemento a mostrar/ocultar.</span></div>
+                <div class="annotation-item"><span class="class-name">aria-expanded</span><span class="class-desc">Atributo de accesibilidad. Bootstrap lo actualiza autom&aacute;ticamente.</span></div>
+            </div>
+
+            <div class="info-box">
+                <strong>🔄 C&oacute;mo funciona:</strong> Bootstrap escucha el clic, encuentra el elemento por su <code>id</code>, y alterna la clase <code>.show</code>. Todo sin escribir JavaScript.
+            </div>
+            <div class="tip-box">
+                <strong>🔗 Relaci&oacute;n con offcanvas:</strong> Usa el mismo sistema: <code>data-bs-toggle</code> + <code>data-bs-target</code>. As&iacute; funcionan collapse, offcanvas, modal y tabs.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 9: SASS -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:#1e1b4b;">9</div>
+            <h2>Personalizaci&oacute;n con Sass (SCSS)</h2>
+            <span class="section-number">AVANZADO</span>
+        </div>
+        <div class="section-body">
+            <div class="explanation">
+                <p>Bootstrap se puede <strong>personalizar</strong> redefiniendo variables Sass antes de compilar. As&iacute; generamos nuestro <code>custom-bootstrap.css</code> desde <code>scss/styles.scss</code>.</p>
+            </div>
+
+            <pre class="code-block"><span class="code-label">scss/styles.scss (resumen)</span>
+// 1. Colores de marca
+$amargia-yellow:      #FAAC00;
+$amargia-green:       #00C83C;
+$amargia-light-green: #70FF9B;
+$amargia-blue:        #003D43;
+$amargia-white:       #F2F2F2;
+
+// 2. Mapeamos a variables de Bootstrap
+$primary:   $amargia-light-green;
+$secondary: $amargia-blue;
+$success:   $amargia-green;
+$warning:   $amargia-yellow;
+
+// 3. Botones personalizados
+$btn-border-radius: 30px;
+$btn-padding-y:    1.25rem;
+$btn-padding-x:    2.1875rem;
+
+// 4. Inputs personalizados
+$input-border-radius: 15px;
+$input-border-color:  $amargia-blue;
+
+// 5. Solo importamos lo necesario
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/navbar";
+// ... etc</pre>
+
+            <div class="annotations">
+                <h4>🔎 Conceptos clave</h4>
+                <div class="annotation-item"><span class="class-name">Variables $</span><span class="class-desc">En Sass empiezan con <code>$</code>. Bootstrap tiene cientos de variables que puedes sobrescribir.</span></div>
+                <div class="annotation-item"><span class="class-name">$primary, $secondary...</span><span class="class-desc">Variables de color de Bootstrap. Cambiando <code>$primary</code> cambian todos los botones, enlaces y acentos.</span></div>
+                <div class="annotation-item"><span class="class-name">@import</span><span class="class-desc">Importamos solo los componentes que usamos. El CSS final es <strong>m&aacute;s ligero</strong>.</span></div>
+            </div>
+
+            <h4 style="color:#4c1d95;margin-top:1.5rem;">🎨 Nuestra paleta</h4>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin:1rem 0;">
+                <div style="flex:1;min-width:80px;background:#FAAC00;color:#1e1b4b;text-align:center;padding:1rem 0.5rem;border-radius:10px;font-weight:700;font-size:0.8rem;">$warning<br>#FAAC00</div>
+                <div style="flex:1;min-width:80px;background:#00C83C;color:white;text-align:center;padding:1rem 0.5rem;border-radius:10px;font-weight:700;font-size:0.8rem;">$success<br>#00C83C</div>
+                <div style="flex:1;min-width:80px;background:#70FF9B;color:#1e1b4b;text-align:center;padding:1rem 0.5rem;border-radius:10px;font-weight:700;font-size:0.8rem;">$primary<br>#70FF9B</div>
+                <div style="flex:1;min-width:80px;background:#003D43;color:white;text-align:center;padding:1rem 0.5rem;border-radius:10px;font-weight:700;font-size:0.8rem;">$secondary<br>#003D43</div>
+                <div style="flex:1;min-width:80px;background:#00080C;color:white;text-align:center;padding:1rem 0.5rem;border-radius:10px;font-weight:700;font-size:0.8rem;">$dark<br>#00080C</div>
+                <div style="flex:1;min-width:80px;background:#F2F2F2;color:#1e1b4b;text-align:center;padding:1rem 0.5rem;border-radius:10px;font-weight:700;font-size:0.8rem;border:1px solid #ddd;">$light<br>#F2F2F2</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 10: CONSEJOS -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="icon-circle" style="background:var(--accent-purple);">10</div>
+            <h2>Consejos finales y buenas pr&aacute;cticas</h2>
+            <span class="section-number">TIPS</span>
+        </div>
+        <div class="section-body">
+            <div class="info-box" style="margin-bottom:1rem;">
+                <strong>📖 1. La documentaci&oacute;n oficial</strong><br>
+                Bootstrap tiene documentaci&oacute;n completa en <strong>getbootstrap.com</strong> (en espa&ntilde;ol). Cada componente tiene ejemplos listos para copiar.
+            </div>
+            <div class="info-box" style="margin-bottom:1rem;border-left-color:var(--accent-green);background:#f0fdf4;">
+                <strong>🧩 2. Piensa en &laquo;clases, no CSS&raquo;</strong><br>
+                ¿Centrar? &rarr; <code>text-center</code>. ¿Margen? &rarr; <code>mt-3</code>. ¿Color? &rarr; <code>bg-primary</code>. M&aacute;s r&aacute;pido y consistente.
+            </div>
+            <div class="info-box" style="margin-bottom:1rem;border-left-color:var(--accent-orange);background:#fffbeb;">
+                <strong>📱 3. Mobile first</strong><br>
+                Las clases sin prefijo (<code>col-10</code>) aplican a m&oacute;viles. Luego a&ntilde;adimos prefijos: <code>col-sm-8</code>, <code>col-lg-6</code>. Siempre piensa primero en pantalla peque&ntilde;a.
+            </div>
+            <div class="info-box" style="margin-bottom:1rem;border-left-color:var(--accent-blue);background:#eff6ff;">
+                <strong>🔍 4. Inspecciona con F12</strong><br>
+                Usa las herramientas de desarrollador para ver qu&eacute; CSS aplica cada clase. Es la mejor forma de aprender.
+            </div>
+            <div class="info-box" style="margin-bottom:1rem;border-left-color:#ef4444;background:#fef2f2;">
+                <strong>⚠️ 5. Orden de las clases</strong><br>
+                El orden <strong>no importa</strong>. <code>class="btn btn-primary mt-3 shadow"</code> o <code>class="shadow btn mt-3 btn-primary"</code> &rarr; funciona igual.
+            </div>
+            <div class="info-box" style="border-left-color:var(--accent-pink);background:#fdf2f8;">
+                <strong>🎯 6. No mezcles Bootstrap con CSS propio sin necesidad</strong><br>
+                Antes de escribir CSS, preg&uacute;ntate: &laquo;¿Hay una clase de Bootstrap para esto?&raquo;. Tu CSS solo para cosas muy espec&iacute;ficas.
+            </div>
+            <div class="tip-box" style="margin-top:1.5rem;">
+                <strong>🚀 Resumen:</strong> Aprende <strong>grid</strong> (container &rarr; row &rarr; col), <strong>colores</strong> (bg-*, text-*), <strong>espaciado</strong> (m-*, p-*) y <strong>componentes</strong> (navbar, btn, form-control, collapse). Con eso ya maquetas p&aacute;ginas enteras.
+            </div>
+        </div>
+    </div>
+
+    <div class="guide-footer">
+        <p>📚 Gu&iacute;a Bootstrap &middot; Proyecto &laquo;Rep&uacute;blica de Amargia&raquo; &middot; Factor&iacute;a F5 &middot; Group #2</p>
+        <p style="font-size:0.8rem;margin-top:0.3rem;">Hecha con ❤️ para los compa&ntilde;eros &middot; <a href="index.html" target="_blank">Ver index.html original</a></p>
+    </div>
+
+</div>
+
+<a href="index.html" class="go-to-project" target="_blank">
+    <span>🔗</span> Ver proyecto original
+</a>
+
+</body>
+</html>

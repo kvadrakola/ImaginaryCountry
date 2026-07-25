@@ -1,0 +1,142 @@
+// ==========================================================================
+// 1. IMPORTAR FUENTES
+// ==========================================================================
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');
+
+// ==========================================================================
+// 2. VARIABLES GLOBALES (Colores, Tipografía, Bordes)
+// ==========================================================================
+
+$amargia-yellow:      #FAAC00; // Amarillo
+$amargia-green:       #00C83C; // Verde
+$amargia-light-green: #70FF9B; // Verde claro
+$amargia-blue:        #003D43; // Azul
+$amargia-white:       #F2F2F2; // Blanco
+$amargia-dark-green:  #000F08; // Verde oscuro
+$amargia-dark-blue:   #00080C; // Azul oscuro
+
+// Fondo y texto del sitio
+$body-bg: $amargia-white;          // Fondo principal (según Figma)
+$body-color: $amargia-dark-blue;   // Color de texto principal
+
+// Colores de marca (brand)
+$primary: $amargia-light-green;    // Color de acento (botones, enlaces)
+$secondary: $amargia-blue;         // Color secundario
+$success:     $amargia-green;      // Éxito / confirmación
+$warning:     $amargia-yellow;     // Advertencia
+$danger:      #dc3545;             // Peligro / error (rojo estándar)
+$info:        #0dcaf0;             // Informativo (celeste)
+$light:       $amargia-white;      // Fondo claro
+$dark:        $amargia-dark-green; // Color oscuro para fondos o texto
+
+
+// Tipografía
+$font-family-base: 'Albert Sans', sans-serif;
+$font-size-base: 1rem;             // Tamaño base (1rem = 16px)
+$line-height-base: 1.5;            // Altura de línea
+$small-font-size:    0.875rem;     // Texto pequeño
+$lead-font-size:     1.125rem;     // Texto destacado (lead)
+$text-muted:         $amargia-blue; // Color para texto secundario
+
+// Encabezados (headings)
+$headings-color:       $amargia-dark-blue;
+$headings-font-weight: 700;
+$h1-font-size: 2rem;               // H1 = 32px
+$h2-font-size: 2rem;               // H2 = 32px
+$h3-font-size: 1.75rem;            // H3 = 28px
+$h4-font-size: 1.375rem;           // H4 = 22px
+
+// Enlaces
+$link-color:                   $amargia-light-green;          // Color del enlace
+$link-decoration:              underline;                     // Subrayado por defecto
+$link-hover-color:             darken($amargia-light-green, 15%); // Color al hacer hover (se oscurece un 15%)
+
+// Geometría y efectos
+$border-radius-xl: 20px;       // Radio grande
+$border-radius-xxl: 25px;      // Radio extra grande
+$enable-shadows: true;         // Activar sombras en componentes
+$enable-gradients: false;      // Activar degradados en botones, etc.
+
+// Sombras para contenedores
+$box-shadow:     0 0.5rem 1rem rgba(0, 0, 0, 0.15);    // Sombra media
+$box-shadow-sm:  0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); // Sombra pequeña
+$box-shadow-lg:  0 1rem 3rem rgba(0, 0, 0, 0.175);      // Sombra grande
+
+
+// Botones
+$btn-padding-y: 1.25rem;       // 20px arriba/abajo
+$btn-padding-x: 2.1875rem;     // 35px izquierda/derecha
+$btn-font-weight: 700;         // Texto en negrita
+$btn-border-radius: 30px;      // Bordes redondeados
+
+// Oscurecimiento automático al hacer hover / active (Bootstrap calcula el color solo)
+$btn-hover-bg-shade-amount:   15%;  // Oscurece el fondo un 15% al hover
+$btn-hover-bg-tint-amount:    15%;  // Aclara el fondo un 15% al hover
+$btn-active-bg-shade-amount:  20%;  // Oscurece el fondo un 20% al hacer clic
+
+// Formularios
+$input-bg:                     $amargia-white;                  // Fondo del input
+$input-color:                  $body-color;                     // Color del texto
+$input-border-color:           $amargia-blue;                   // Borde del input
+$input-border-radius:          15px;                            // Bordes redondeados
+$input-padding-y:              0.5rem;                          // Padding vertical
+$input-padding-x:              1rem;                            // Padding horizontal
+$input-focus-border-color:     $amargia-light-green;            // Borde al enfocar
+$input-focus-box-shadow:       0 0 0 0.2rem rgba($amargia-light-green, 0.25); // Sombra al enfocar
+$form-label-font-weight:       500;                             // Peso de la etiqueta
+$form-label-color:             $amargia-dark-blue;              // Color de la etiqueta
+
+
+
+// ==========================================================================
+// 3. IMPORTAR FUNCIONES DE BOOTSTRAP (Necesario para el paso 4)
+// ==========================================================================
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+// ==========================================================================
+// 4. COMBINAR ESTRUCTURAS COMPLEJAS (Grid, Espaciados, Colores extra)
+// ==========================================================================
+
+// Añadir colores personalizados al sistema de Bootstrap
+
+$custom-colors: (
+"amargia-dark-blue": $amargia-dark-blue
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// ==========================================================================
+// 5. IMPORTAR COMPONENTES DE BOOTSTRAP
+// ==========================================================================
+// Núcleo base (siempre necesario)
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+
+// Componentes opcionales (comenta los que no uses en Figma para reducir peso)
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/carousel";  // Carrusel de imágenes
+@import "../node_modules/bootstrap/scss/accordion"; // Acordeón (desplegables)
+@import "../node_modules/bootstrap/scss/nav";        // Navegación (pestañas, enlaces)
+@import "../node_modules/bootstrap/scss/navbar";     // Barra de navegación (header)
+@import "../node_modules/bootstrap/scss/images";     // Clases .img-fluid, .img-thumbnail
+@import "../node_modules/bootstrap/scss/close";      // Botón de cerrar (×)
+@import "../node_modules/bootstrap/scss/alert";      // Alertas / notificaciones
+@import "../node_modules/bootstrap/scss/badge";      // Etiquetas / badges
+@import "../node_modules/bootstrap/scss/list-group"; // Listas de elementos
+@import "../node_modules/bootstrap/scss/modal";      // Ventanas modales
+@import "../node_modules/bootstrap/scss/tables";     // Tablas
+@import "../node_modules/bootstrap/scss/offcanvas";  //mobile menu
+@import "../node_modules/bootstrap/scss/tooltip";    // Tooltips (info al hacer hover)
+@import "../node_modules/bootstrap/scss/popover";    // Popovers (ventanas emergentes)
+
+// Importar utilidades al final (OBLIGATORIO)
+@import "../node_modules/bootstrap/scss/utilities/api";
